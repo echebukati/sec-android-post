@@ -1,0 +1,66 @@
+https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04
+
+https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers
+ufw allow 22221/tcp
+ufw allow 80/tcp
+ufw allow 443/tcp
+ufw enable
+sudo dpkg-reconfigure tzdata
+sudo apt-get update
+sudo apt-get install ntp
+
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu-14-04
+sudo apt-get update
+sudo apt-get install apache2
+sudo apt-get install mysql-server php5-mysql
+sudo mysql_install_db
+sudo mysql_secure_installation
+sudo apt-get install php5 libapache2-mod-php5 php5-mcrypt
+
+
+https://www.digitalocean.com/community/tutorials/how-to-install-and-secure-phpmyadmin-on-ubuntu-12-04
+sudo apt-get install phpmyadmin apache2-utils
+sudo nano /etc/apache2/apache2.conf
+	Include /etc/phpmyadmin/apache.conf
+sudo service apache2 restart
+sudo nano /etc/phpmyadmin/apache.conf
+	<Directory /usr/share/phpmyadmin>
+        Options FollowSymLinks
+        DirectoryIndex index.php
+        AllowOverride All
+        [...]
+sudo nano /usr/share/phpmyadmin/.htaccess
+	AuthType Basic
+	AuthName "Restricted Files"
+	AuthUserFile /etc/apache2/.phpmyadmin.htpasswd
+	Require valid-user
+sudo htpasswd -c /etc/apache2/.phpmyadmin.htpasswd demo
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean
+Change nameservers on namecheap.
+
+https://www.digitalocean.com/community/tutorials/how-to-install-an-ssl-certificate-from-a-commercial-certificate-authority
+	-Generate a CSR and Private Key
+	-Load CSR on certificate provider (e.g. Namecheap).
+	-Fill in details on provider.
+	-Verify domain ownership.
+	-Install provided and bundle certificate in /etc/ssl/certs/
+	-Move your key to /etc/ssl/private/
+		-While in /etc/apache2/sites-available/000-default.conf adding the certificate files, add the following immediately below:
+			Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+	a2enmod ssl
+	a2enmod headers
+	Restart apache
+
+https://www.digitalocean.com/community/tutorials/how-to-protect-your-server-against-the-poodle-sslv3-vulnerability
+	sudo nano /etc/apache2/mods-available/ssl.conf:
+		SSLProtocol all -SSLv3 -SSLv2
+While at it, also do:
+	SSLHonorCipherOrder on
+	SSLCipherSuite "EECDH+ECDSA+AESGCM EECDH+aRSA+AESGCM EECDH+ECDSA+SHA384 EECDH+ECDSA+SHA256 EECDH+aRSA+SHA384 EECDH+aRSA+SHA256 EECDH+AESGCM EECDH EDH+AESGCM EDH+aRSA HIGH !MEDIUM !LOW !aNULL !eNULL !LOW !RC4 !MD5 !EXP !PSK !SRP !DSS"
+
+///SET UP FILES ON SERVER.
+Then extract the certificate in .crt format from your server (View certificate, export). Next, add this certificate to you assets folder the Android project.
+Follow the sample code to complete.
+
+DONE!

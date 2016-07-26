@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Sec Android Post</string>
+    <string name="login">Login</string>
+    <string name="make_sure_combo_correct">Make sure your username/password combination is correct.</string>
+    <string name="local_service_stopped">App service stopped.</string>
+    <string name="not_connected_to_service">Not connected to service.</string>
+    <string name="not_connected_to_network">Not connected to network.</string>
+    <string name="enter_message">Enter a message.</string>
+    <string name="send">Post transaction</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="message_cannot_be_sent">Message can not be sent.</string>
+</resources>
